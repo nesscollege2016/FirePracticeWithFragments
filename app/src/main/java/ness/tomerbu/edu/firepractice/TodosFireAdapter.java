@@ -16,11 +16,13 @@ import ness.tomerbu.edu.firepractice.models.Todos;
 public class TodosFireAdapter extends FirebaseRecyclerAdapter<Todos, TodosFireAdapter.TodosViewHolder>{
 
     public TodosFireAdapter(DatabaseReference ref) {
-        super(Todos.class, R.layout.todo_list_item, TodosViewHolder.class, ref);
+        super(Todos.class, R.layout.todo_list_item,
+                TodosViewHolder.class, ref);
     }
 
     public TodosFireAdapter(Query query) {
-        super(Todos.class, R.layout.todo_list_item, TodosViewHolder.class, query);
+        super(Todos.class, R.layout.todo_list_item,
+                TodosViewHolder.class, query);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ness.tomerbu.edu.firepractice;
+package ness.tomerbu.edu.firepractice.fragments;
 
 
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import ness.tomerbu.edu.firepractice.R;
+import ness.tomerbu.edu.firepractice.TodosFireAdapter;
 
 
 /**
