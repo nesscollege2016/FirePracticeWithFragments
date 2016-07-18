@@ -6,6 +6,12 @@
 
 <RelativeLayout
     android:padding="10dp"
+
+    android:id="@+id/relative_item"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
 
