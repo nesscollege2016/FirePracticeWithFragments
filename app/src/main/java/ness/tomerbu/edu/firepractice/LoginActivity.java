@@ -3,6 +3,7 @@ package ness.tomerbu.edu.firepractice;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import ness.tomerbu.edu.firepractice.models.User;
 
 /**
  * A login screen that offers login via email/password.
@@ -150,7 +159,25 @@ public class LoginActivity extends AppCompatActivity  {
 
 
     private void loginWithFirebase() {
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(mEmailView.getText().toString(), mPasswordView.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
 
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                User user = new User(currentUser.getEmail(), currentUser.getUid());
+                FirebaseDatabase.
+                        getInstance().
+                        getReference().
+                        child("users").
+                        child(currentUser.getUid()).
+                        setValue(user);
+
+                Intent intent = new Intent(LoginActivity.this ,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
     }
 
 
